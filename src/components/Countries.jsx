@@ -6,9 +6,9 @@ const Countries = ({ countrie, individual, handdleButton }) => {
   }
 
   return (
-    <div>
-      <strong>{countrie.name.common}</strong>
-      <button onClick={handdleButton}>Show</button>
+    <div className="pa">
+      <strong>{countrie.name.common}</strong>{" "}
+      <button onClick={handdleButton}> Mostrar</button>
     </div>
   );
 };

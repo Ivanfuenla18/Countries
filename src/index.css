@@ -1,68 +1,164 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  line-height: 1.6;
+  color-scheme: dark;
+  /* Paleta de Negros y Grises */
+  color: #ffffff;
+  background-color: #121212; /* Negro casi puro */
 }
+
 body {
   margin: 0;
-  padding: 2rem 1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  text-align: center;
-}
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
+/* --- CONTENEDOR REACTIVO (Se adapta al ancho) --- */
+#root {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- TARJETA NEGRA INTEGRADA --- */
+.country-card {
+  background-color: #1a1a1a; /* Un gris muy oscuro, casi como el fondo */
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #333; /* Borde muy sutil */
+  margin-top: 1.5rem;
+  width: 100%; /* Ocupa el 100% del max-width anterior */
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* --- BUSCADOR ESTILO MINIMALISTA --- */
+input {
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 1rem;
+  width: 80%;
+  max-width: 400px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #fff; /* Al escribir, el borde se vuelve blanco */
+}
+
+/* --- LISTAS COMO ETIQUETAS (CHIPS) --- */
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap; /* Para que no se salgan en móvil */
+  gap: 8px;
+}
+
+li {
+  background: #333;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* --- TEXTOS --- */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+/* --- BANDERA --- */
+.flag-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+/* --- CLIMA --- */
+.weather-info {
+  border-top: 1px solid #333;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  background-color: #2a2a2a; /* Gris muy oscuro para que resalte poco sobre el fondo */
+  color: #ffffff;
+  border: 1px solid #444;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.2s ease; /* Para que el cambio de color sea suave */
+  margin-left: 10px; /* Espacio entre el nombre del país y el botón */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Efecto al pasar el ratón (Hover) */
+button:hover {
+  background-color: #ffffff; /* Se vuelve blanco */
+  color: #000000; /* Letras negras */
+  border-color: #ffffff;
+  transform: translateY(-1px); /* Sube un poquito */
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Efecto al hacer clic */
+button:active {
+  transform: translateY(0px);
+  background-color: #cccccc;
+}
+.pa {
+  padding: 10px;
+}
+
+/* Estilo para la lista de países (donde aparecen los botones) */
+.country-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* El nombre a un lado y el botón al otro */
+  background: #1a1a1a;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #222;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* --- MEDIA QUERY PARA MÓVILES EXTREMOS --- */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.8rem;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  .country-card {
+    padding: 1rem;
   }
 }

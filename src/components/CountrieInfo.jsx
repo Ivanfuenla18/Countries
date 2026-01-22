@@ -29,7 +29,7 @@ const CountrieInfo = ({ countrie }) => {
     );
   } else
     return (
-      <>
+      <div className="country-card">
         <h1>{countrie.name.common} </h1>
         <ul>
           <li>Capital: {countrie.capital} </li>
@@ -59,7 +59,7 @@ const CountrieInfo = ({ countrie }) => {
           />
           <li>Viento: {weather.wind.speed} m/s</li>
         </ul>
-      </>
+      </div>
     );
 };
 
