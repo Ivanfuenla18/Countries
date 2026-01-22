@@ -30,19 +30,19 @@ const CountrieInfo = ({ countrie }) => {
   } else
     return (
       <>
-        <h2>{countrie.name.common} </h2>
+        <h1>{countrie.name.common} </h1>
         <ul>
           <li>Capital: {countrie.capital} </li>
           <li>Area: {countrie.area} m2</li>
         </ul>
 
-        <h2>Lenguas</h2>
+        <h1>Lenguas</h1>
         <ul>
           {languagesArray.map((lang) => (
             <li key={lang}>{lang}</li>
           ))}
         </ul>
-        <h2>Bandera</h2>
+        <h1>Bandera</h1>
         <img
           src={countrie.flags.svg}
           alt="Imagen bandera"
