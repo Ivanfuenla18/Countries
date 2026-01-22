@@ -57,7 +57,7 @@ const CountrieInfo = ({ countrie }) => {
             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
             alt="Weather icon"
           />
-          <li>Wind: {weather.wind.speed} m/s</li>
+          <li>Viento: {weather.wind.speed} m/s</li>
         </ul>
       </>
     );
