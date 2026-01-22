@@ -1,16 +1,44 @@
-# React + Vite
+# 🌍 World Countries & Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es parte del curso **Full Stack Open** de la Universidad de Helsinki. Es una aplicación interactiva desarrollada con **React** y **Vite** que permite explorar información de países de todo el mundo e integrar datos meteorológicos en tiempo real.
 
-Currently, two official plugins are available:
+## 🚀 Demo
+Puedes ver la aplicación funcionando aquí: [https://countries-rouge-two.vercel.app](https://countries-rouge-two.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Características
+- **Búsqueda inteligente**: Filtrado de países en tiempo real a medida que escribes.
+- **Vistas dinámicas**: 
+  - Si hay más de 10 coincidencias, pide ser más específico.
+  - Si hay entre 2 y 10, muestra una lista con botones de "Show".
+  - Si hay solo una, muestra toda la información detallada.
+- **Clima en tiempo real**: Integración con la API de **OpenWeatherMap** para mostrar temperatura, viento e iconos climáticos de la capital del país seleccionado.
+- **Seguridad**: Manejo de API Keys mediante variables de entorno (`.env`).
 
-## React Compiler
+## 🛠️ Tecnologías utilizadas
+- **React** (Hooks: `useState`, `useEffect`)
+- **Vite** (Build tool)
+- **Axios** (Peticiones HTTP)
+- **OpenWeather API** (Datos climáticos)
+- **Vercel** (Hosting y despliegue continuo)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Instalación y configuración local
 
-## Expanding the ESLint configuration
+1. Clona el repositorio:
+   ```bash
+   git clone [https://github.com/Ivanfuenla18/Countries.git](https://github.com/Ivanfuenla18/Countries.git)
+Instala las dependencias:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Bash
+
+npm install
+Crea un archivo .env en la raíz y añade tu API Key:
+
+Fragmento de código
+
+VITE_WEATHER_KEY=tu_clave_aqui
+Lanza el servidor de desarrollo:
+
+Bash
+
+npm run dev
+Desarrollado por Iván Paniagua Sánchez 🚀
