@@ -2,54 +2,57 @@ import { useState, useEffect } from "react";
 import servicesCountries from "./services/Countries";
 import Countries from "./components/Countries";
 import Filter from "./components/Filter";
-import CountrieInfo from "./components/CountrieInfo";
 
 function App() {
-  /* Declaracion de las variables */
-
   const [countries, setCountries] = useState([]);
   const [filter, setFilter] = useState("");
-
-  /* EL useEffect sirve para traer todos los paises al iniciar la app */
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     servicesCountries
       .getAll()
       .then((response) => {
         setCountries(response.data);
+        setLoading(false);
       })
-      .catch((err) =>
-        console.log("Fallo al obtener los datos del servidor:", err),
-      );
+      .catch((err) => {
+        console.log("Fallo al obtener los datos del servidor:", err);
+        setLoading(false);
+      });
   }, []);
-
-  /* 
-  Esta pequeña funcion recibe el nombre del pais seleccionado y 
-  cambia el filtro lo que hace rederizar todo otra vez y 
-  al ser un pais manda solo los datos de ese pais.
-  */
 
   const handdleShowButton = (name) => {
     setFilter(name);
   };
 
-  /* La siguiente funcion maneja el cambio del input del filtro */
-
   const handdleFilterChange = (event) => {
     setFilter(event.target.value);
   };
 
-  /* Esta variable es la que se encarga de coger el filtro con los paises y filtrarlos*/
+  // 1. Primero filtramos todos los que coinciden parcialmente
   const countriesToShow = countries.filter((country) =>
     country.name.common.toLowerCase().includes(filter.toLowerCase()),
   );
 
-  /* Vale estube mirando y vi esta forma en la que enviamos diferentes cosas a Countrie en funcion de los paises que hay */
+  // 2. LÓGICA DE COINCIDENCIA EXACTA (Solución para Amparo)
+  // Buscamos si entre los filtrados hay uno que se llame EXACTAMENTE como lo escrito
+  const exactMatch = countriesToShow.find(
+    (c) => c.name.common.toLowerCase() === filter.toLowerCase(),
+  );
 
   let contentToShow;
 
-  if (countriesToShow.length > 10) {
-    contentToShow = <p>Hay demasiados países para mostrar</p>;
+  if (loading) {
+    contentToShow = <p>Cargando datos de países...</p>;
+  } else if (filter === "") {
+    contentToShow = <p>Escribe algo para buscar un país</p>;
+  }
+  // Si hay una coincidencia exacta, mandamos ese país directamente (individual={true})
+  else if (exactMatch) {
+    contentToShow = <Countries countrie={exactMatch} individual={true} />;
+  } else if (countriesToShow.length > 10) {
+    contentToShow = <p>Demasiadas coincidencias, sé más específico</p>;
   } else if (countriesToShow.length <= 10 && countriesToShow.length >= 2) {
     contentToShow = countriesToShow.map((countrie) => (
       <Countries
@@ -63,16 +66,17 @@ function App() {
     contentToShow = (
       <Countries countrie={countriesToShow[0]} individual={true} />
     );
+  } else {
+    contentToShow = <p>No se han encontrado resultados</p>;
   }
-
-  /* Cuerpo de la  app*/
 
   return (
     <>
-      <h1>Paises</h1>
-      <Filter change={handdleFilterChange} />
-      {contentToShow}
+      <h1>Buscador de Países</h1>
+      <Filter value={filter} change={handdleFilterChange} />
+      <div className="results-container">{contentToShow}</div>
     </>
   );
 }
+
 export default App;
